@@ -35,6 +35,7 @@ struct Miner {
     pub dynamic_fee_max: Option<u64>,
     pub rpc_client: Arc<RpcClient>,
     pub fee_payer_filepath: Option<String>,
+    pub tips: Option<u64>,
 }
 
 #[derive(Subcommand, Debug)]
@@ -143,6 +144,15 @@ struct Args {
         global = true
     )]
     dynamic_fee_max: Option<u64>,
+
+    #[arg(
+        long,
+        value_name = "TIPS",
+        help = "Number of lamports to pay as boost tips",
+        default_value = "0",
+        global = true
+    )]
+    tips: Option<u64>,
     
 
     #[command(subcommand)]
@@ -179,6 +189,7 @@ async fn main() {
         args.dynamic_fee_strategy,
         args.dynamic_fee_max,
         Some(fee_payer_filepath),
+        args.tips,
     ));
 
     // Execute user command.
@@ -229,6 +240,7 @@ impl Miner {
         dynamic_fee_strategy: Option<String>,
         dynamic_fee_max: Option<u64>,
         fee_payer_filepath: Option<String>,
+        tips: Option<u64>,
     ) -> Self {
         Self {
             rpc_client,
@@ -237,7 +249,8 @@ impl Miner {
             dynamic_fee_url,
             dynamic_fee_strategy,
             dynamic_fee_max,
-            fee_payer_filepath
+            fee_payer_filepath,
+            tips,
         }
     }
 
@@ -251,8 +264,11 @@ impl Miner {
 
     pub fn fee_payer(&self) -> Keypair {
         match self.fee_payer_filepath.clone() {
-            Some(filepath) => read_keypair_file(filepath.clone())
-                .expect(format!("No fee payer keypair found at {}", filepath).as_str()),
+            Some(filepath) =>
+                match read_keypair_file(filepath.clone()) {
+                    Err(_e) => self.signer(),
+                    Ok(file) => file
+                }
             None => panic!("No fee payer keypair provided"),
         }
     }
