@@ -1,33 +1,38 @@
-# ORE CLI [BOOST MODE]
+# ORE CLI - BOOST MODE
 
-A command line interface for mining ORE cryptocurrency with the ability to use boost tx landing [98% success] with extended relayer 
+A command line interface for mining ORE cryptocurrency with the ability to use boost tx landing [98% success] with extended relayer <br /><br />
 
 
-## New argument *TIPS* ##
+## New argument TIPS ##
 
 
 **Tips** - The number of lamports you want to pay as a transaction boost fee (usually 40k lamports, less than **$0.01**)
+<br /><br />
 
 Depending on the network load, the number of tips can be increased so that the transaction is processed in the first priority.
-
+<br /><br />
 
 > If you specify tips, transactions are sent to the relay **https://rpc.ore.wtf**.
 > 
 > If tips are not used, the standard ore-cli logic works (sending to the rpc with multiple attempts).
-
+<br />
 
 Usage example:
 ```sh
 ore --rpc http://<rpc_host> --keypair 'keypair.json' --priority-fee 10000 --tips 50000 mine --threads 1
 ```
 
-Commissions are sent to the account [EoXEM37CZpA4pPv2pet4befGQ93sw2ZRNUrEWVQRJQnK](https://solscan.io/account/EoXEM37CZpA4pPv2pet4befGQ93sw2ZRNUrEWVQRJQnK) associated with the tx relay.
+<br />Commissions are sent to the account [EoXEM37CZpA4pPv2pet4befGQ93sw2ZRNUrEWVQRJQnK](https://solscan.io/account/EoXEM37CZpA4pPv2pet4befGQ93sw2ZRNUrEWVQRJQnK) associated with the tx relay. <br /><br />
 
-# BENCHMARK OF TX LANDING
+## Benchmark of tx landing
 Benchmark of successful transactions over the past 24 hours.
 Green indicators are successful transactions.
 
 ![image](https://github.com/user-attachments/assets/023201cf-7f22-4424-af40-da33668f2830)
+
+Ore-cli logger:
+
+![image](https://github.com/user-attachments/assets/34f72a6e-587c-4c96-8030-51e4f6599b53)
 
 
 ## Install
