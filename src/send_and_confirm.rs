@@ -181,7 +181,7 @@ impl Miner {
             }
 
             // Retry
-            std::thread::sleep(Duration::from_millis(GATEWAY_DELAY));
+            std::thread::sleep(Duration::from_millis(match tip.unwrap_or(0) > 0 { true => 500, false => GATEWAY_DELAY}));
             attempts += 1;
 
             if attempts > match tip.unwrap_or(0) > 0 { true => 1, false => GATEWAY_RETRIES }
