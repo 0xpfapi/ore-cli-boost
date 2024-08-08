@@ -19,10 +19,15 @@ Depending on the network load, the number of tips can be increased so that the t
 
 Usage example:
 ```sh
-ore --rpc http://<rpc_host> --keypair 'keypair.json' --priority-fee 10000 --tips 50000 mine --threads 1
+ore --rpc http://<rpc_host> --keypair 'keypair.json' --priority-fee 10000 --tips 50000 mine --cores 1
 ```
 
 <br />Commissions are sent to the account [EoXEM37CZpA4pPv2pet4befGQ93sw2ZRNUrEWVQRJQnK](https://solscan.io/account/EoXEM37CZpA4pPv2pet4befGQ93sw2ZRNUrEWVQRJQnK) associated with the tx relay. <br /><br />
+
+## Latency (RPC&relay)
+
+Make sure your client instance is close to the RPC and relay **https://rpc.ore.wtf** (NY region located).
+Recommended latency value is 10-50ms
 
 ## Benchmark of tx landing
 Benchmark of successful transactions over the past 24 hours.
