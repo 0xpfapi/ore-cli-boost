@@ -1,6 +1,7 @@
 # ORE CLI - BOOST MODE
 
 A command line interface for mining ORE cryptocurrency with the ability to use boost tx landing [98% success] with extended relayer <br /><br />
+Feel free to join us in [Discord](https://discord.gg/e3xGse42z7)
 
 
 ## New argument TIPS ##
